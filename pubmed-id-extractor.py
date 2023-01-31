@@ -39,7 +39,7 @@ for i in range(len(keyword_list)):
             result = str(result)
             result_number = int(result[2:-2])
         else:
-            print("搜索结果超过1000条")
+            print("More than 1000 search results")
             a = []
             a.append(result[0]+result[1])
             result = str(a).replace(',','')
@@ -62,13 +62,13 @@ for i in range(len(keyword_list)):
                 finally:
                     out.append(keyword_list[i]+":"+str(pmid_list))
                     
-file = open('a.txt', 'w')
+file = open('pubmed-id.txt', 'w')
 for i in range(len(out)):
     s = str(out[i]).replace('\r\n',' ').replace(':',' ')+' '
     file.write(s+'\n')
 file.close()
 
-f=open("a.txt")
+f=open("pubmed-id.txt")
 ha={}
 key = []
 value = []
@@ -86,7 +86,7 @@ for k in ha:
     data['key'] = key
     data = data.set_index('key')
     data['value'] = value
-    data.to_json('5-fu-resistance-target-PMID.json',orient='columns')
+    data.to_json(keyword+'-PMID.json',orient='columns')
 
 end_time = time.perf_counter()
 using_time = strftime("%H:%M:%S", gmtime(end_time - start_time))
